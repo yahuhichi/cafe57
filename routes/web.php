@@ -1,6 +1,5 @@
-<?php
-
-use Illuminate\Support\Facades\Route;
+<!-- ルーティング -->
+<?php 
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +12,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// viewを表示する際はget,その他はpost
+
+Route::get('/', function () { // Laravel簡易サーバーを開いた時に最初に表示される画面を表示
+    return view('welcome');   // welcome.blade.phpを表示する。
 });
+Route::get('/index', 'UsersController@index')->name('index');
 
-Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
+Route::get('/signup_form', 'UsersController@signup_form')->name('signup_form'); // 新規登録画面のviewを表示
+Route::post('/signup', 'UsersController@signup')->name('signup'); 
 
-Route::get('/create', [App\Http\Controllers\ProductController::class, 'create'])->name('create');
-Route::get('/order/{id}', [App\Http\Controllers\ProductController::class, 'order'])->name('order');
-Route::get('/form', [App\Http\Controllers\ProductController::class, 'form'])->name('form');
-Route::post('/update', [App\Http\Controllers\ProductController::class, 'update'])->name('products');
-Route::get('/store', [App\Http\Controllers\ProductController::class, 'store'])->name('store');
-Route::post('/subtract', [App\Http\Controllers\ProductController::class, 'subtract'])->name('products');
-Route::post('/insert', [App\Http\Controllers\ProductController::class, 'insert'])->name('order_table');
-
-Route::post('/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('order_table');
+Route::get('/login_form', 'UsersController@login_form')->name('login_form'); // ログイン画面のviewを表示
+Route::post('/login', 'UsersController@signup')->name('login'); 
