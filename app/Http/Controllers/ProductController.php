@@ -51,7 +51,7 @@ class ProductController extends Controller
     public function create(Request $request)
     {
 
-        return view('/create');
+        return view('create');
     }
     /**
      * 持ち出し申請画面へ遷移
@@ -62,7 +62,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        return view('/out');
+        return view('out');
     }
     /**
      * 備品登録
@@ -86,7 +86,7 @@ class ProductController extends Controller
         $product->order = $request->order;
         $product->save();
 
-        return redirect('/products');
+        return redirect('products');
     }
     /**
      * ordersテーブルへのデータ受け渡し、在庫数に反映
@@ -96,6 +96,11 @@ class ProductController extends Controller
      */
     public function insert(Request $request)
     {
+        $this->validate($request, [
+            'new_order' => 'required|max:25',
+            'staff' => 'required|max:25',
+        ]);
+
         //ordersテーブルへのデータ受け渡し
         $order = new Order;
         $order->product_id = $request->product_id;
@@ -105,6 +110,8 @@ class ProductController extends Controller
         $order->save();
         /* dd($order); */
 
+        // CSRFトークンを再生成して、二重送信対策
+        $request->session()->regenerateToken(); // <- この一行を追加
 
         //在庫数に反映
         $data = Product::where('id', $request->product_id)
@@ -120,10 +127,24 @@ class ProductController extends Controller
             ]);
 
             $orders = Order::orderBy('created_at', 'asc')->get();
-            return view('/order_table', [
+            return view('order_table', [
             'orders' => $orders,
         ]);
     }
+     /**
+     * 注文一覧表示
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function order_table(Request $request)
+    {
+        $orders = Order::orderBy('created_at', 'asc')->get();
+        return view('order_table', [
+            'orders' => $orders,
+        ]);
+    }
+
     //削除停止
    /*  public function delete($product_name){ */
         //削除対象レコードを検索
@@ -148,11 +169,45 @@ class ProductController extends Controller
         } */
 
     //メール作成フォームに注文表を表示
-    public function form()
+    /* public function form()
     {
         // テーブルを指定
         $orders = Order::select('product_id','product_name', 'new_order')
             ->get();
+
+        return view('form', [
+            'orders' => $orders,
+        ]);
+    } */
+    /**
+     *
+    *メール作成フォームに注文表を表示
+
+     * @param Request $request
+     * @return Response
+     * */
+    public function form(Request $request)
+
+        {
+            //チェックしているか
+           /*  $this->validate($request, [
+                'radio' => 'required',
+            ]); */
+
+            //value1or2をOrderテーブルに入力
+        $list=$request->order;
+            foreach($list as $value){
+
+            DB::table('orders')
+            ->where('product_id',$value['product_id'])
+            ->update([
+                'status'=>$value['status']
+            ]);
+        }
+        // 表示させる注文を指定
+        $orders = Order::where('status','=','1')
+        ->get();
+        // dd($orders);
 
         return view('form', [
             'orders' => $orders,
@@ -189,6 +244,6 @@ class ProductController extends Controller
             ]);
 
 
-        return redirect('/products');
+        return redirect('products');
     }
 }

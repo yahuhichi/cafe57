@@ -26,5 +26,6 @@ Route::post('/update', [App\Http\Controllers\ProductController::class, 'update']
 Route::get('/store', [App\Http\Controllers\ProductController::class, 'store'])->name('store');
 Route::post('/subtract', [App\Http\Controllers\ProductController::class, 'subtract'])->name('products');
 Route::post('/insert', [App\Http\Controllers\ProductController::class, 'insert'])->name('order_table');
+Route::get('/order_table', [App\Http\Controllers\ProductController::class, 'order_table'])->name('order_table');
 
 Route::post('/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('order_table');
