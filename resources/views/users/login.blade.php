@@ -13,10 +13,10 @@
         <div>
             <h1>cafe57</h1>
         </div>
-        @csrf <!-- CSRF保護 -->
             <div class="outer-login-form">
                 <section>
                     <form action="" method="post" enctype="multipart/form-data">
+                        @csrf <!-- CSRF保護 -->
                         <p>ユーザー名</p>
                         <p><input type="text" name="user-name" placeholder="ユーザー名を入力してください" style="width:250px; height:30px;"></P>
                         <p>パスワード</P>

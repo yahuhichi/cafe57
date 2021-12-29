@@ -13,10 +13,10 @@
         <div>
             <h1>新規登録画面</h1>
         </div>
-        @csrf <!-- CSRF保護 -->
             <div class="outer-signup-form">
                 <section>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('signup') }}" method="post" enctype="multipart/form-data">
+                        @csrf <!-- CSRF保護 -->
                         <p>どちらの役職ですか？</p>
                         <!-- ラジオボタン -->
                         <!-- name属性を統一する事により、2つの内、1つのラジオボタンしか反応しなくなるようにできる。 -->
