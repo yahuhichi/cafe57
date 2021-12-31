@@ -3,7 +3,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}"> <!--「href=」でlogin.cssと連携-->
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}"> <!-- login.cssと連携 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン画面</title>
@@ -15,7 +15,7 @@
         </div>
             <div class="outer-login-form">
                 <section>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('login') }}" method="post" enctype="multipart/form-data">
                         @csrf <!-- CSRF保護 -->
                         <p>ユーザー名</p>
                         <p><input type="text" name="user-name" placeholder="ユーザー名を入力してください" style="width:250px; height:30px;"></P>
