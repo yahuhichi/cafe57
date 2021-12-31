@@ -15,7 +15,7 @@
         </div>
             <div class="outer-signup-form">
                 <section>
-                    <form action="{{ route('signup') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('signup') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                         @csrf <!-- CSRF保護 -->
                         <p>どちらの役職ですか？</p>
                         <!-- ラジオボタン -->
