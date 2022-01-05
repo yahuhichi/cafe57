@@ -21,14 +21,14 @@
                         <!-- ラジオボタン -->
                         <!-- name属性を統一する事により、2つの内、1つのラジオボタンしか反応しなくなるようにできる。 -->
                         <!-- p(段落)に「display:inline-block」のスタイルを指定することで、ラジオボタンが横並びになる。 -->
-                        <p style="display:inline-block"><input type="radio" name="user-type" value="1" class="radio-buttom-1" >従業員</p>
-                        <p style="display:inline-block"><input type="radio" name="user-type" value="2" class="radio-buttom-2" >管理者</p>
-                        <p><input type="text" name="name" placeholder="名前を入力してください" style="width:250px; height:30px;"></P>
-                        <p><input type="text" name="user-name" placeholder="ユーザー名を入力してください" style="width:250px; height:30px; margin-top:10px;"></P>
-                        <p><input type="email" name="email" placeholder="メールアドレスを入力してください" style="width:250px; height:30px; margin-top:10px;"></p>
-                        <p><input type="password" name="password" placeholder="パスワードを入力してください" style="width:250px; height:30px; margin-top:10px;"></p>
-                        <p><input type="submit" value="登録する" style="width:200px; height:30px; margin-top:20px;"></p>
-                        <p><input type="submit" value="ログイン画面に戻る" style="width:200px; height:30px; margin-top:20px;"></p>
+                        <p style="display:inline-block"><input type="radio" name="user_type" value="1" class="radio-buttom-1" checked >従業員</p>
+                        <p style="display:inline-block"><input type="radio" name="user_type" value="2" class="radio-buttom-1" >管理者</p>
+                        <p><input type="text" name="name" placeholder="名前を入力してください" autocomplete="off" style="width:250px; height:30px;"></P>
+                        <p><input type="text" name="user_name" placeholder="ユーザー名を入力してください" autocomplete="off" style="width:250px; height:30px; margin-top:10px;"></P>
+                        <p><input type="email" name="email" placeholder="メールアドレスを入力してください" autocomplete="off" style="width:250px; height:30px; margin-top:10px;"></p>
+                        <p><input type="password" name="password" placeholder="パスワードを入力してください" autocomplete="off" style="width:250px; height:30px; margin-top:10px;"></p>
+                        <p><input type="submit" value="登録する" autocomplete="off" style="width:200px; height:30px; margin-top:20px;"></p>
+                        <p><input type="submit" value="ログイン画面に戻る" autocomplete="off" style="width:200px; height:30px; margin-top:20px;"></p>
                     </form>
                 </section>
             </div>
