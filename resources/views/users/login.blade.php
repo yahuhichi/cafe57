@@ -15,14 +15,14 @@
         </div>
             <div class="outer-login-form">
                 <section>
-                    <form action="{{ route('login') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('login') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                         @csrf <!-- CSRF保護 -->
                         <p>ユーザー名</p>
-                        <p><input type="text" name="user-name" placeholder="ユーザー名を入力してください" style="width:250px; height:30px;"></P>
+                        <p><input type="text" name="user_name" placeholder="ユーザー名を入力してください" autocomplete="off" style="width:250px; height:30px;"></P>
                         <p>パスワード</P>
-                        <p><input type="password" name="password" placeholder="パスワードを入力してください" style="width:250px; height:30px; margin-top:10px;"></P>
-                        <p><input type="submit" value="ログイン" style="width:200px; height:30px; margin-top:20px;"></p>
-                        <p><input type="submit" value="新規登録" style="width:200px; height:30px; margin-top:20px;"></p>
+                        <p><input type="password" name="password" placeholder="パスワードを入力してください" autocomplete="off" style="width:250px; height:30px; margin-top:10px;"></P>
+                        <p><input type="submit" value="ログイン" autocomplete="off" style="width:200px; height:30px; margin-top:20px;"></p>
+                        <p><input type="submit" value="新規登録" autocomplete="off" style="width:200px; height:30px; margin-top:20px;"></p>
                     </form>
                 </section>
             </div>
