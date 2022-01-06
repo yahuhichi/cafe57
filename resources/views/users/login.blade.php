@@ -11,7 +11,7 @@
 <body>
     <div class="login">
         <div>
-            <h1>cafe57</h1>
+            <h1>ログイン画面</h1>
         </div>
             <div class="outer-login-form">
                 <section>
