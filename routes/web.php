@@ -20,7 +20,7 @@ Route::get('/signup_form', 'UsersController@signup_form')->name('signup_form'); 
 Route::post('/signup', 'UsersController@signup')->name('signup'); // 新規登録の処理(post)
 
 Route::get('/login_form', 'UsersController@login_form')->name('login_form'); // ログイン画面のviewを表示(get)
-Route::post('/login', 'UsersController@signup')->name('login'); // ログインの処理(post)
+Route::post('/login', 'UsersController@login')->name('login'); // ログインの処理(post)
 
 Route::get('/home_screen', 'UsersController@home_screen')->name('home_screen'); // ホーム画面のviewを表示(get)
 Route::post('/home', 'UsersController@login')->name('home'); // ホーム画面の処理(post)
