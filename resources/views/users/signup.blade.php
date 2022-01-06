@@ -28,6 +28,7 @@
                         <p><input type="email" name="email" placeholder="メールアドレスを入力してください" autocomplete="off" style="width:250px; height:30px; margin-top:10px;"></p>
                         <p><input type="password" name="password" placeholder="パスワードを入力してください" autocomplete="off" style="width:250px; height:30px; margin-top:10px;"></p>
                         <p><input type="submit" value="登録する" autocomplete="off" style="width:200px; height:30px; margin-top:20px;"></p>
+                        <p><input type="submit" value="ログイン画面に戻る" autocomplete="off" style="width:200px; height:30px; margin-top:20px;"></p>
                     </form>
                 </section>
             </div>
