@@ -14,7 +14,7 @@ class CreateOutsTable extends Migration
     public function up()
     {
         Schema::create('outs', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->index();
             $table->integer('product_id')->index();
             $table->integer('out_amount');
             $table->integer('staff');

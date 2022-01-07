@@ -1,0 +1,29 @@
+/* ホーム画面のCSS */
+body {
+    background-color:#f6f5f4;
+    margin-left: 125px;
+    margin-top: 25px;
+}
+
+.side {
+    background-color:#ff838b;
+    width:350px;
+    height:700px;
+    text-align:center;
+    border: 2px solid;
+} 
+
+.content-1 {
+    background-color:#b3d874;
+    width:900px;
+    height:700px;
+    text-align:center;
+    border: 2px solid;
+    margin-left:5px;
+}
+
+section {
+    display:flex;
+    text-align: center; /* 全体を画面中央に配置 */
+    padding-top: 50px;
+}
