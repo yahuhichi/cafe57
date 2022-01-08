@@ -10,7 +10,7 @@
 </head>
 <body>
     <section>
-        <div class="side">
+        <div class="side"> <!-- サイドバー -->
             <p><h1>cafe57</h1></p>
             <nav class="sidebar">   
                 <p><a href="{{ url('products') }}"><h3>在庫一覧画面</h3></a></p>
@@ -22,8 +22,8 @@
                 <p><a href="{{ route('home_screen') }}">ホーム画面に戻る</a></p>
             </nav>
         </div>
-        <div class="home">
-            <p>メインコンテンツ</p>
+        <div class="home"> <!-- チャット画面 -->
+            <p><h1>チャット画面</h1></p>
         </div>
     </section>
 </body>
