@@ -6,15 +6,17 @@ body {
 }
 
 .side {
-    background-color:#ff838b;
     width:350px;
     height:700px;
     text-align:center;
     border: 2px solid;
 } 
 
-.content-1 {
-    background-color:#b3d874;
+.sidebar {
+    list-style: none;
+}
+
+.home {
     width:900px;
     height:700px;
     text-align:center;
