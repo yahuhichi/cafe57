@@ -23,7 +23,8 @@
 <!--注文表一覧画面-->
 <div class="table-responsive">
     <p>注文一覧表</p>
-    <form action="{{ route('form') }}" method="GET">
+   <!--  //formからmailに変更// -->
+    <form action="{{ route('mail') }}" method="GET">
     <table class="table table-hover">
      <thead>
         <tr>
@@ -55,12 +56,13 @@
                 </td>
             </tr>
         @endforeach
-            <input type ="submit" href="{{ route('form') }}"value="注文メール作成" class="btn btn-danger btn-sm btn-dell">
+        <!-- //formからmailに変更// -->
+            <input type ="submit" href="{{ route('mail') }}"value="注文メール作成" class="btn btn-danger btn-sm btn-dell">
         </tbody>
         @yield('script')
     </table>
 </form>
-    <!-- <a href="{{ route('form') }}">注文メール作成</a> -->
+  
 </div>
 @endsection
 
