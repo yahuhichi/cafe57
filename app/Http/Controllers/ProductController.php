@@ -168,17 +168,7 @@ class ProductController extends Controller
        /*  return redirect('/order_table');
         } */
 
-    //メール作成フォームに注文表を表示
-    /* public function form()
-    {
-        // テーブルを指定
-        $orders = Order::select('product_id','product_name', 'new_order')
-            ->get();
 
-        return view('form', [
-            'orders' => $orders,
-        ]);
-    } */
     /**
      *
     *メール作成フォームに注文表を表示
@@ -186,13 +176,10 @@ class ProductController extends Controller
      * @param Request $request
      * @return Response
      * */
-    public function form(Request $request)
+    /* public function form(Request $request)
 
         {
-            //チェックしているか
-           /*  $this->validate($request, [
-                'radio' => 'required',
-            ]); */
+
 
             //value1or2をOrderテーブルに入力
         $list=$request->order;
@@ -210,6 +197,30 @@ class ProductController extends Controller
         // dd($orders);
 
         return view('form', [
+            'orders' => $orders,
+        ]);
+    } */
+    public function mail(Request $request)
+
+        {
+
+
+            //value1or2をOrderテーブルに入力
+        $list=$request->order;
+            foreach($list as $value){
+
+            DB::table('orders')
+            ->where('product_id',$value['product_id'])
+            ->update([
+                'status'=>$value['status']
+            ]);
+        }
+        // 表示させる注文を指定
+        $orders = Order::where('status','=','1')
+        ->get();
+        // dd($orders);
+
+        return view('mail', [
             'orders' => $orders,
         ]);
     }
