@@ -23,8 +23,10 @@
 <!--注文表一覧画面-->
 <div class="table-responsive">
     <p>注文一覧表</p>
+   <!--  //formからmailに変更// -->
+    <form action="{{ route('mail') }}" method="GET">
     <table class="table table-hover">
-        <thead>
+     <thead>
         <tr>
             <th>型番</th>
             <th>品目</th>
@@ -34,8 +36,8 @@
             <th>削除</th>
 
         </tr>
-        </thead>
-        <tbody id="tbl">
+     </thead>
+     <tbody id="tbl">
         @foreach ($orders as $order)
             <tr>
 
@@ -44,23 +46,23 @@
                 <td>{{ $order->new_order }}</td>
                 <td>{{ $order->staff }}</td>
                 <td><div>
-                        <label for="checkbox">送信する</label>
-                        <input type="checkbox" id="checkbox" name="check[]" value="0">
+
+                        <p style="display:inline-block"><input type="radio" name="order[{{ $order->product_id }}][status]" value="1" class="radio-buttom-1" >送信済み</p>
+                        <p style="display:inline-block"><input type="radio" name="order[{{ $order->product_id }}][status]" value="2" class="radio-buttom-1" >保留</p>
+                        <input type="hidden" name="order[{{ $order->product_id }}][product_id]" value="{{ $order->product_id }}">
                     </div>
                 </td>
-                <!-- <td><form action="/delete/{{$order->id}}" method="POST">
 
-                        <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
-                    </form>
-
-
-                </td> -->
+                </td>
             </tr>
         @endforeach
+        <!-- //formからmailに変更// -->
+            <input type ="submit" href="{{ route('mail') }}"value="注文メール作成" class="btn btn-danger btn-sm btn-dell">
         </tbody>
         @yield('script')
     </table>
-    <a href="{{ route('form') }}">注文メール作成</a>
+</form>
+  
 </div>
 @endsection
 
