@@ -17,7 +17,7 @@ class CreateOutsTable extends Migration
             $table->increments('id')->index();
             $table->integer('product_id')->index();
             $table->integer('out_amount');
-            $table->integer('staff');
+            $table->string('staff');
             $table->timestamps();
         });
     }
