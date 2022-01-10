@@ -1,3 +1,4 @@
+<!-- ルーティング -->
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -13,9 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () { // Laravel簡易サーバーを開いた時に最初に表示される画面を表示
+    return view('welcome');   // welcome.blade.phpを表示する。
 });
+
+Route::get('/signup_form', 'UsersController@signup_form')->name('signup_form'); // 新規登録画面のviewを表示(get)
+Route::post('/signup', 'UsersController@signup')->name('signup'); // 新規登録の処理(post)
+
+Route::get('/login_form', 'UsersController@login_form')->name('login_form'); // ログイン画面のviewを表示(get)
+Route::post('/login', 'UsersController@login')->name('login'); // ログインの処理(post)
+
+Route::get('/home_screen', 'UsersController@home_screen')->name('home_screen'); // ホーム画面のviewを表示(get)
+Route::post('/home', 'UsersController@login')->name('home'); // ホーム画面の処理(post)
+
 //在庫一覧表表示
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
 //新規登録画面へ遷移
