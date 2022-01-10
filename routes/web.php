@@ -24,3 +24,6 @@ Route::post('/login', 'UsersController@login')->name('login'); // ログイン�
 
 Route::get('/home_screen', 'UsersController@home_screen')->name('home_screen'); // ホーム画面のviewを表示(get)
 Route::post('/home', 'UsersController@login')->name('home'); // ホーム画面の処理(post)
+
+
+Route::post('/test', 'UsersController@index')->name('test');
