@@ -13,10 +13,11 @@ class ChatHistory extends Migration
      */
     public function up()
     {
-        Schema::create('chat_history', function (Blueprint $table) {
+        Schema::create('chat', function (Blueprint $table) {
             $table->increments('id'); // 主キー
             $table->integer('user_id'); // usersテーブルのid
-            $table->string('chat'); // チャットの内容
+            $table->string('title'); // 件名
+            $table->string('message'); // チャットの内容
             $table->timestamps(); // 登録・更新日時
         });
     }
