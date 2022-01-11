@@ -30,8 +30,9 @@ Route::post('/login', 'UsersController@login')->name('login'); // ログイン�
 Route::get('/home_screen', 'UsersController@home_screen')->name('home_screen');
 Route::post('/home', 'UsersController@login')->name('home'); // ホーム画面の処理
 
-//在庫一覧表の表示
+//在庫一覧画面の表示
 Route::get('/products', 'ProductController@index')->name('products');
+Route::post('/products_process', 'UsersController@home')->name('products_process'); // 在庫一覧画面の処理
 
 //注文申請画面へ遷移
 Route::get('/order/{id}', 'ProductController@order')->name('order');
