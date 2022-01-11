@@ -26,18 +26,18 @@
                 <td>{{ $product->stock }}</td>
                 <td>{{ $product->order }}</td>
                 <!-- <アラートボタン表示> -->
-               <td> @if( $product->stock < $product->order )
-               <a href="/order/{{ $product->id }}">{{$product->id}}</a>
+                <td> @if( $product->stock < $product->order )
+                <a href="/order/{{ $product->id }}">{{$product->id}}</a>
                 {{csrf_field()}}
-               <!-- <input type="hidden" name="id" value="{{ $product->id }}" />
-               <input type="hidden" name="product_name" value="{{ $product->product_name }}" /> -->
-               <!-- <input type="submit"> -->
+                <!-- <input type="hidden" name="id" value="{{ $product->id }}" />
+                <input type="hidden" name="product_name" value="{{ $product->product_name }}" /> -->
+                <!-- <input type="submit"> -->
                 @endif</td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    <a href="{{ route('create') }}">登録</a>
+    <a href="{{ route('signup') }}">登録</a>
     <a href="{{ route('store') }}">持ち出し</a>
 </div>
 @endsection
