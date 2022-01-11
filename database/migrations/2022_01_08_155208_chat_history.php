@@ -29,6 +29,6 @@ class ChatHistory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chat_history');
+        Schema::dropIfExists('chat');
     }
 }
