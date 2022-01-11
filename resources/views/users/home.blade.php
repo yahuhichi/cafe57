@@ -10,11 +10,20 @@
 </head>
 <body>
     <section>
-        <div class="side">
-            <p>サイドバー</p>
-        </div> 
-        <div class="content-1">
-            <p>メインコンテンツ</p>
+        <div class="side"> <!-- サイドバー -->
+            <p><h1>cafe57</h1></p>
+            <nav class="sidebar">   
+                <p><a href="{{ url('products') }}"><h3>在庫一覧画面</h3></a></p>
+                <p><a href="{{ url('create') }}">・商品登録画面</a></p> 
+                <p><a href="{{ url('order_table') }}"><h3>注文表画面</h3></a></p>
+                <p><a href="{{ url('') }}"><h3>シフト申請画面</h3></a></p>
+                <p><a href="{{ url('') }}">・シフト管理画面</a></p>
+                <p><a href="{{ url('') }}">・勤怠一覧画面</a></p>
+                <p><a href="{{ route('home_screen') }}">ホーム画面に戻る</a></p>
+            </nav>
+        </div>
+        <div class="home"> <!-- チャット画面 -->
+            <p><h1>チャット画面</h1></p>
         </div>
     </section>
 </body>
