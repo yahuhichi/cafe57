@@ -27,7 +27,7 @@ Route::get('/login_form', 'UsersController@login_form')->name('login_form');
 Route::post('/login', 'UsersController@login')->name('login'); // ログインの処理
 
 //ホーム画面へ遷移
-Route::get('/home_screen', 'UsersController@home_screen')->name('home_screen');
+Route::get('/home_screen', 'ChatController@home_screen')->name('home_screen');
 Route::post('/home', 'UsersController@login')->name('home'); // ホーム画面の処理
 
 //在庫一覧画面の表示
