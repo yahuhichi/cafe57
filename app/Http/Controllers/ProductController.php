@@ -218,7 +218,7 @@ class ProductController extends Controller
         // 表示させる注文を指定
         $orders = Order::where('status','=','1')
         ->get();
-        // dd($orders);
+        
 
         return view('mail', [
             'orders' => $orders,
