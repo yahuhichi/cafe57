@@ -64,15 +64,6 @@ class UsersController extends Controller
         return view('users.home');
     }
 
-    /**
-     * ホーム画面の表示
-     * 
-     */
-    public function home_screen()
-    {
-        return view('users.home');
-    }
-
     public function home() // ホーム画面の処理(post)
     {
         // サイドバーの「ログアウト」ボタンを押すとログイン画面に戻る
