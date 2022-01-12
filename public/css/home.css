@@ -5,16 +5,18 @@ body {
     margin-top: 25px;
 }
 
-.side {
-    background-color:#ff838b;
-    width:350px;
+.side { /* サイドバーのCSS */
+    width:200px;
     height:700px;
     text-align:center;
     border: 2px solid;
 } 
 
-.content-1 {
-    background-color:#b3d874;
+.sidebar {
+    list-style: none;
+}
+
+.home { /* チャット画面のCSS */
     width:900px;
     height:700px;
     text-align:center;
