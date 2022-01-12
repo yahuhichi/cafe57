@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::orderBy('created_at', 'asc')->get();
-        return view('products.index', [
+        return view('products', [
             'products' => $products,
         ]);
     }
