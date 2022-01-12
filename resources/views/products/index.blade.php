@@ -37,7 +37,7 @@
         @endforeach
         </tbody>
     </table>
-    <a href="{{ route('signup') }}">登録</a>
+    <a href="{{ route('create') }}">新規備品登録</a>
     <a href="{{ route('store') }}">持ち出し</a>
 </div>
 @endsection
