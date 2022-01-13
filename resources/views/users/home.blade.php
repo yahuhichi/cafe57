@@ -7,6 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ホーム画面</title>
+    <style>
+        div.chatarea {
+            border-style: solid;
+            position: absolute;
+            left: 250px;
+            top: 50px;
+            width: 500px;
+        }
+    </style>
 </head>
 <body>
     <section>
@@ -35,6 +44,20 @@
                     <input type="submit" value="投稿">
                 </div>
             </form>
+            <div class="chatarea">
+                <table> <!-- chatテーブルのデータを全て表示させる処理 -->
+                    @foreach ($chats as $chat)
+                    <tr>
+                        <td>{{ $chat->user->name}}</td> <!-- Chat.phpのuser関数(Method)を参照して、usersテーブルの情報が紐づけられる -->
+                        <td>{{ $chat->user_id }}</td>
+                        <td>{{ $chat->title }}</td>
+                        <td>{{ $chat->message }}</td>
+                        <td>{{ $chat->created_at}}</td>
+                        <td>{{ $chat->updated_at}}</td>
+                    </tr>
+                    @endforeach
+                </table>
+            </div>
         </div>
     </section>
 </body>
