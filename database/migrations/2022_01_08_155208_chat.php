@@ -13,7 +13,7 @@ class Chat extends Migration
      */
     public function up()
     {
-        Schema::create('chat', function (Blueprint $table) {
+        Schema::create('chats', function (Blueprint $table) {
             $table->increments('id'); // 主キー
             $table->integer('user_id'); // usersテーブルのid
             $table->string('title'); // 件名
@@ -29,6 +29,6 @@ class Chat extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chat');
+        Schema::dropIfExists('chats');
     }
 }
