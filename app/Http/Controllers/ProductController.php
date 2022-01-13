@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB; // DB ファサードを use する
 use App\Product;
 use App\Order;
 use App\Out;
+use App\Ship;
 use Psy\Command\WhereamiCommand;
 
 class ProductController extends Controller
@@ -126,12 +127,12 @@ class ProductController extends Controller
                 'stock' => $renew
             ]);
 
-            $orders = Order::orderBy('created_at', 'asc')->get();
-            return view('order_table', [
+        $orders = Order::orderBy('created_at', 'asc')->get();
+        return view('order_table', [
             'orders' => $orders,
         ]);
     }
-     /**
+    /**
      * 注文一覧表示
      *
      * @param Request $request
@@ -146,16 +147,16 @@ class ProductController extends Controller
     }
 
     //削除停止
-   /*  public function delete($product_name){ */
-        //削除対象レコードを検索
-      /*   public function delete(Request $request,$id)
+    /*  public function delete($product_name){ */
+    //削除対象レコードを検索
+    /*   public function delete(Request $request,$id)
         {
            $order=Order::find($request->$id);
            $order->delFlg='Y';
            $order->save();
  */
 
-        /* $product =Product::find($product_name);
+    /* $product =Product::find($product_name);
         //Productから削除
 
         $product->delete();
@@ -164,64 +165,62 @@ class ProductController extends Controller
 
         $order->delete(); */
 
-        //リダイレクト
-       /*  return redirect('/order_table');
+    //リダイレクト
+    /*  return redirect('/order_table');
         } */
 
 
     /**
      *
-    *メール作成フォームに注文表を表示
+     *メール作成フォームに遷移
 
      * @param Request $request
      * @return Response
      * */
-    /* public function form(Request $request)
+    public function form(Request $request)
 
-        {
+    {
+        return view('form');
+    }
+    /**
+     *
+     *送信済みを選んだものをshipsテーブルに入力し、注文表からは削除。注文番号確認画面へ遷移
 
+     * @param Request $request
+     * @return Response
+     * */
+    public function ship(Request $request)
 
-            //value1or2をOrderテーブルに入力
-        $list=$request->order;
-            foreach($list as $value){
+    {
 
-            DB::table('orders')
-            ->where('product_id',$value['product_id'])
-            ->update([
-                'status'=>$value['status']
-            ]);
-        }
-        // 表示させる注文を指定
-        $orders = Order::where('status','=','1')
-        ->get();
-        // dd($orders);
-
-        return view('form', [
-            'orders' => $orders,
-        ]);
-    } */
-    public function mail(Request $request)
-
-        {
-
-
-            //value1or2をOrderテーブルに入力
-        $list=$request->order;
-            foreach($list as $value){
+        //value1or2をOrderテーブルに入力
+        $list = $request->order;
+        foreach ($list as $value) {
 
             DB::table('orders')
-            ->where('product_id',$value['product_id'])
-            ->update([
-                'status'=>$value['status']
-            ]);
+                ->where('product_id', $value['product_id'])
+                ->update([
+                    'status' => $value['status']
+                ]);
         }
-        // 表示させる注文を指定
-        $orders = Order::where('status','=','1')
-        ->get();
-        
+        // shipsテーブルへ送る注文を指定
+        $data = Order::where('status', '=', '1')
+            ->first();
 
-        return view('mail', [
-            'orders' => $orders,
+        /* dd($order); */
+        //shipsテーブルへのデータ受け渡し
+        $ship = new Ship;
+        /*  $ship->id = 0; */
+        $ship->product_name = $data->product_name;
+        $ship->new_order = $data->new_order;
+        $ship->save();
+
+       //status=1を削除する
+        $data ->delete();
+
+        /* dd('test'); */
+        return view('ship', [
+            'ship' => $ship
         ]);
     }
 
