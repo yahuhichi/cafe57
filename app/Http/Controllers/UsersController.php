@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User; // User.phpを使用
 use Illuminate\Support\Facades\Hash; // パスワードを乱数にする設定
+use Illuminate\Support\Facades\DB; // DBクラスを使用
+use App\Chat; // Chatクラス(chat.php)を使用
 
 class UsersController extends Controller
 {
@@ -42,7 +44,6 @@ class UsersController extends Controller
         return view('users.login');
     }
 
-
     /**
      * ログイン画面の表示
      * 
@@ -59,16 +60,11 @@ class UsersController extends Controller
             'user_name' => 'required',
             'password' => ['required', 'min:8', 'max:255', 'alpha_num']
         ]);
-
-        //「ログイン」ボタンを押すとホーム画面に遷移
-        return view('users.home');
+        return redirect('home_screen'); // ホーム画面へリダイレクト
     }
 
     public function home() // ホーム画面の処理(post)
     {
-        // サイドバーの「ログアウト」ボタンを押すとログイン画面に戻る
-        return view('users.');
+        return redirect('users.login'); // サイドバーの「ログアウト」ボタンを押すとログイン画面へリダイレクト
     }
 }
-
-
