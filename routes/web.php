@@ -34,6 +34,9 @@ Route::post('/home', 'UsersController@login')->name('home'); // ホーム画面�
 Route::get('/products', 'ProductController@index')->name('products');
 Route::post('/products_process', 'UsersController@home')->name('products_process'); // 在庫一覧画面の処理
 
+//新規備品登録画面へ遷移
+Route::get('/create', 'ProductController@create')->name('create');
+
 //注文申請画面へ遷移
 Route::get('/order/{id}', 'ProductController@order')->name('order');
 
