@@ -30,9 +30,7 @@ class MailController extends Controller
         ];
 
 
-        /* Mail::send('mail',['orders' => 'order'],function($msg){
-            $msg->to('hntake@me.com')->subject('件名');
-        }); */
+        
 
         $validator = Validator::make($request->all(), $rules);
 

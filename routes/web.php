@@ -64,10 +64,10 @@ Route::get('/order_table', 'ProductController@order_table')->name('order_table')
 Route::get('/form', 'MailController@form');
 Route::post('/form', 'MailController@send');
 
-/* Route::post('/delete/{id}', 'ProductController@delete')->name('order_table');
+
 // 送信メール本文のプレビュー
 Route::get('sample/mailable/preview', function () {
     return new App\Mail\SampleNotification();
   });
 //SampleNotificationメソッド
-  Route::get('sample/mailable/send', 'SampleController@SampleNotification'); */
+  Route::get('sample/mailable/send', 'SampleController@SampleNotification'); 
