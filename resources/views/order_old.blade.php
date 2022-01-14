@@ -5,7 +5,7 @@
 @section('content')
 
 
-<!--
+
 <!--注文表画面-->
 <div class="table-responsive">
     <p>注文申請</p>
