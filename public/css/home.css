@@ -47,7 +47,7 @@ textarea {
     resize: none;
 }
 
-.chatarea {
+.chatarea { /* チャット画面のCSS */
     border-style: solid;
     position: absolute;
     left: 250px;
