@@ -46,3 +46,11 @@ section {
 textarea {
     resize: none;
 }
+
+.chatarea {
+    border-style: solid;
+    position: absolute;
+    left: 250px;
+    top: 50px;
+    width: 500px;
+}
