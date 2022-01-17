@@ -44,9 +44,9 @@ Route::get('/create', 'ProductController@create')->name('create');
 Route::get('/order/{id}', 'ProductController@order')->name('order');
 
 //注文メール送信画面へ遷移
-/* Route::get('/form', [App\Http\Controllers\ProductController::class, 'form'])->name('form'); */
-//注文メール送信画面へ遷移(mailable機能)
-Route::get('/mail', 'ProductController@mail')->name('mail');
+Route::get('/form2', 'ProductController@form')->name('form');
+//注文番号確認画面へ遷移
+Route::get('/ship', 'ProductController@ship')->name('ship');
 
 //持ち出し申請submit
 Route::post('/update', 'ProductController@update')->name('products');
@@ -63,13 +63,14 @@ Route::post('/insert', 'ProductController@insert')->name('order_table');
 //注文表画面表示
 Route::get('/order_table', 'ProductController@order_table')->name('order_table');
 
-Route::post('/delete/{id}', 'ProductController@delete')->name('order_table');
+//Mailableを使った
+Route::get('/form', 'MailController@form');
+Route::post('/form', 'MailController@send');
+
+
 // 送信メール本文のプレビュー
 Route::get('sample/mailable/preview', function () {
     return new App\Mail\SampleNotification();
   });
 //SampleNotificationメソッド
-  Route::get('sample/mailable/send', 'SampleController@SampleNotification');
-  //Mailableを使った
- /*  Route::get('/mail', 'MailController@index'); */
-  Route::post('/send', 'MailController@send');
+  Route::get('sample/mailable/send', 'SampleController@SampleNotification'); 
