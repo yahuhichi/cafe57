@@ -22,10 +22,35 @@ body {
     text-align:center;
     border: 2px solid;
     margin-left:5px;
+    position: relative; /* chatエリアの親要素を基準に配置する為に「relative」を使用 */
 }
 
 section {
     display:flex;
     text-align: center; /* 全体を画面中央に配置 */
     padding-top: 50px;
+}
+
+.outer-title-form {
+    width:250px; 
+    height:30px; 
+    margin-top:50px;
+}
+
+.outer-message-form {
+    width:250px; 
+    height:400px; 
+    margin-top:100px;
+}
+
+textarea {
+    resize: none;
+}
+
+.chatarea { /* チャット画面のCSS */
+    border-style: solid;
+    position: absolute;
+    left: 250px;
+    top: 50px;
+    width: 500px;
 }
