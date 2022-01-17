@@ -24,14 +24,14 @@ Route::post('/signup', 'UsersController@signup')->name('signup'); // 新規登�
 
 //ログイン画面へ遷移
 Route::get('/login_form', 'UsersController@login_form')->name('login_form');
-Route::post('/login', 'UsersController@login')->name('login'); // ログインの処理
-
-//ログアウト
-Route::get('/login_form', 'UsersController@login_form')->name('login_form');
+Route::post('/login', 'UsersController@login')->name('login'); // ログイン認証
 
 //ホーム画面へ遷移
 Route::get('/home_screen', 'ChatController@home_screen')->name('home_screen');
-Route::post('/home', 'UsersController@login')->name('home'); // ホーム画面の処理
+Route::post('/home', 'ChatController@logout')->name('logout'); //ログアウトの処理
+
+//チャット登録
+Route::post('/chat', 'ChatController@chat')->name('chat');
 
 //在庫一覧画面の表示
 Route::get('/products', 'ProductController@index')->name('products');
