@@ -17,9 +17,9 @@ class UsersController extends Controller
 
     /**
      * 新規登録画面の表示
-     * 
+     *
      */
-    public function signup_form() 
+    public function signup_form()
     {
         return view('users.signup');
     }
@@ -45,9 +45,9 @@ class UsersController extends Controller
 
     /**
      * ログイン画面の表示
-     * 
+     *
      */
-    public function login_form() 
+    public function login_form()
     {
         return view('users.login');
     }
@@ -61,12 +61,13 @@ class UsersController extends Controller
         ]);
 
         //「ログイン」ボタンを押すとホーム画面に遷移
-        return view('users.home');
+        return redirect()->route('home_screen');
+
     }
 
     /**
      * ホーム画面の表示
-     * 
+     *
      */
     public function home_screen()
     {
