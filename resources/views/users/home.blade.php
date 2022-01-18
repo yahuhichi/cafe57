@@ -41,12 +41,12 @@
                 <table> <!-- chatテーブルのデータを全て表示させる処理 -->
                     @foreach ($chats as $chat)
                     <tr>
-                        <td>{{ $chat->user->name}}</td> <!-- Chat.phpのuser関数(Method)を参照して、usersテーブルの情報が紐づけられる -->
+                        <td>{{ $user->name }}</td> <!-- Chat.phpのuser関数(Method)を参照して、usersテーブルの情報が紐づけられる -->
                         <td>{{ $chat->user_id }}</td>
                         <td>{{ $chat->title }}</td>
                         <td>{{ $chat->message }}</td>
-                        <td>{{ $chat->created_at}}</td>
-                        <td>{{ $chat->updated_at}}</td>
+                        <td>{{ $chat->created_at }}</td>
+                        <td>{{ $chat->updated_at }}</td>
                     </tr>
                     @endforeach
                 </table>
