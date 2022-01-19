@@ -19,6 +19,7 @@ class Chat extends Migration
             $table->string('title'); // 件名
             $table->string('message'); // チャットの内容
             $table->timestamps(); // 登録・更新日時
+            $table->dropColumn('updated_at'); // 更新日時を無効化
         });
     }
 
