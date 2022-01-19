@@ -33,6 +33,7 @@ Route::post('/home', 'ChatController@logout')->name('logout'); //ログアウト
 //チャット登録
 Route::post('/chat', 'ChatController@chat')->name('chat');
 
+//ログインしないとアクセス出来ないようにする
 Route::middleware('auth:api', 'throttle:60,1')->group(function () {
 
 //在庫一覧画面の表示
