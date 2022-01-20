@@ -21,7 +21,10 @@
                 <p><a href="{{ route('home_screen') }}">ホーム画面に戻る</a></p>
             </nav>
             <div class="logout_buttom">
-                <input type="submit" value="ログアウト">
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf <!-- CSRF保護 -->
+                    <input type="submit" value="ログアウト"> <!-- ログアウトしてログイン画面に戻る -->
+                </form>
             </div>
         </div>
         <div class="home"> <!-- チャット画面 -->
@@ -34,19 +37,19 @@
                 <div class="outer-message-form">
                     <p><h3>メッセージ</h3></P>
                     <textarea name="message" placeholder="ここにメッセージを入力してください" autocomplete="off" rows="30" cols="20"></textarea><br> <!-- rows =「高さ」, cols =「幅」-->
-                    <input type="submit" value="投稿">
+                    <input type="submit" value="投稿" style=background:#99CC00;>
                 </div>
             </form>
             <div class="chatarea">
                 <table> <!-- chatテーブルのデータを全て表示させる処理 -->
                     @foreach ($chats as $chat)
                     <tr>
-                        <td>{{ $chat->user->name}}</td> <!-- Chat.phpのuser関数(Method)を参照して、usersテーブルの情報が紐づけられる -->
-                        <td>{{ $chat->user_id }}</td>
+                        <td>{{ $chat->user->name }}</td> <!-- $chatに、user関数を使い、その中のnameを参照 -->
                         <td>{{ $chat->title }}</td>
                         <td>{{ $chat->message }}</td>
-                        <td>{{ $chat->created_at}}</td>
-                        <td>{{ $chat->updated_at}}</td>
+                        <td>{{ $chat->created_at }}</td>
+                        <td>{{ $chat->updated_at }}</td>
+                        <td><a href="chat_delete/{{ $chat->id }}" class="chat_delete_button">削除</a></td>
                     </tr>
                     @endforeach
                 </table>

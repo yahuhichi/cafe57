@@ -69,9 +69,16 @@ class UsersController extends Controller
         ]);
 
         // ログイン認証
-        if(Auth::attempt(['user_name' => $request->input('user_name'), 'password' => $request->input('password')])){
-            return redirect()->route('home_screen');
+        if(Auth::attempt(['user_name' => $request->input('user_name'), 'password' => $request->input('password')]))
+            {
+            return redirect()->route('home_screen'); // ログインに成功するとホーム画面にリダイレクト
             }
-            return redirect()->back();
+            return redirect()->back(); // ログインに失敗するとログイン画面に戻る
+    }
+
+    public function logout(Request $request) // ログアウトの処理(post)
+    {
+        Auth::logout(); // ログアウト
+        return redirect()->route('home_screen'); // 「ログアウト」ボタンを押すと、ログイン画面にリダイレクト
     }
 }
