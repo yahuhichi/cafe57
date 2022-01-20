@@ -41,4 +41,10 @@ class ChatController extends Controller
         $chat->save(); // $chatに格納されている情報を保存。
         return redirect('home_screen'); // 入力内容が保存されたら、ホーム画面にリダイレクト
     }
+
+    public function chat_delete($result) // チャット削除の処理(get)
+    {
+        $result = Chat::where('id', $result)->delete();
+        return redirect('home_screen'); // 「削除」ボタンを押すと、ホーム画面にリダイレクト
+    }
 }
