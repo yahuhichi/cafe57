@@ -20,9 +20,9 @@ class UsersController extends Controller
 
     /**
      * 新規登録画面の表示
-     * 
+     *
      */
-    public function signup_form() 
+    public function signup_form()
     {
         return view('users.signup');
     }
@@ -40,7 +40,7 @@ class UsersController extends Controller
         // DBインサート(usersテーブルに行を追加)
         $user = new User();
         $user->fill([ // fillを使い、モデルの全カラムを更新。
-            'name' => $request->name, 
+            'name' => $request->name,
             'user_name' => $request->user_name,
             'email' => $request->email,
             'password' => Hash::make($request->password), // 新規登録時にパスワードをハッシュ化。
@@ -53,9 +53,9 @@ class UsersController extends Controller
 
     /**
      * ログイン画面の表示
-     * 
+     *
      */
-    public function login_form() 
+    public function login_form()
     {
         return view('users.login');
     }

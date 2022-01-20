@@ -34,6 +34,9 @@ Route::get('/home_screen', 'ChatController@home_screen')->name('home_screen');
 Route::post('/chat', 'ChatController@chat')->name('chat');
 Route::get('/chat_delete/{id}', 'ChatController@chat_delete')->name('chat_delete'); //チャット削除
 
+//ログインしないとアクセス出来ないようにする
+Route::middleware('auth:api', 'throttle:60,1')->group(function () {
+
 //在庫一覧画面の表示
 Route::get('/products', 'ProductController@index')->name('products');
 Route::post('/products_process', 'UsersController@home')->name('products_process'); // 在庫一覧画面の処理
@@ -69,9 +72,13 @@ Route::get('/form', 'MailController@form');
 Route::post('/form', 'MailController@send');
 
 
-// 送信メール本文のプレビュー
-Route::get('sample/mailable/preview', function () {
-    return new App\Mail\SampleNotification();
-  });
-//SampleNotificationメソッド
-  Route::get('sample/mailable/send', 'SampleController@SampleNotification'); 
+
+});
+
+/* Route::middleware(['AdminMiddleware'])->group(function(){
+    //アドミン以外見られたくないルート設定
+}); */
+
+/* Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home'); */
