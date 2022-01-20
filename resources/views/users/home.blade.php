@@ -45,7 +45,6 @@
                     @foreach ($chats as $chat)
                     <tr>
                         <td>{{ $chat->user->name }}</td> <!-- $chatに、user関数を使い、その中のnameを参照 -->
-                        <td>{{ $chat->user_id }}</td>
                         <td>{{ $chat->title }}</td>
                         <td>{{ $chat->message }}</td>
                         <td>{{ $chat->created_at }}</td>
