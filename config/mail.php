@@ -15,8 +15,10 @@ return [
     |            "postmark", "log", "array"
     |
     */
-
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+//logに送信する場合
+    'driver' => env('MAIL_DRIVER', 'log'),
+//gmailで送る場合
+    /* 'driver' => env('MAIL_DRIVER', 'smtp'), */
 
     /*
     |--------------------------------------------------------------------------

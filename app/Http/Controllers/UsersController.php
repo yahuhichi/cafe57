@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User; // User.phpを使用
 use Illuminate\Support\Facades\Hash; // パスワードを乱数にする設定
+use Illuminate\Support\Facades\DB; // DBクラスを使用
+use App\Chat; // Chatクラス(chat.php)を使用
+use Illuminate\Support\Facades\Auth; // Authクラスを使用
 
 class UsersController extends Controller
 {
@@ -17,9 +20,9 @@ class UsersController extends Controller
 
     /**
      * 新規登録画面の表示
-     * 
+     *
      */
-    public function signup_form() 
+    public function signup_form()
     {
         return view('users.signup');
     }
@@ -31,23 +34,28 @@ class UsersController extends Controller
             'name' => 'required',
             'user_name' => 'required',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'min:8', 'max:255', 'alpha_num']
+            'password' => ['required', 'min:8', 'max:255', 'alpha_num'],
         ]);
 
         // DBインサート(usersテーブルに行を追加)
         $user = new User();
-        $user->fill($request->all())->save(); // fillを使い、モデルの全カラムを更新し、保存。
+        $user->fill([ // fillを使い、モデルの全カラムを更新。
+            'name' => $request->name,
+            'user_name' => $request->user_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), // 新規登録時にパスワードをハッシュ化。
+            'user_type' => $request->user_type,
+        ])->save(); // $userに格納されている情報を保存。
 
         //「登録する」ボタンを押すとログイン画面に遷移
         return view('users.login');
     }
 
-
     /**
      * ログイン画面の表示
-     * 
+     *
      */
-    public function login_form() 
+    public function login_form()
     {
         return view('users.login');
     }
@@ -60,24 +68,17 @@ class UsersController extends Controller
             'password' => ['required', 'min:8', 'max:255', 'alpha_num']
         ]);
 
-        //「ログイン」ボタンを押すとホーム画面に遷移
-        return view('users.home');
+        // ログイン認証
+        if(Auth::attempt(['user_name' => $request->input('user_name'), 'password' => $request->input('password')]))
+            {
+            return redirect()->route('home_screen'); // ログインに成功するとホーム画面にリダイレクト
+            }
+            return redirect()->back(); // ログインに失敗するとログイン画面に戻る
     }
 
-    /**
-     * ホーム画面の表示
-     * 
-     */
-    public function home_screen()
+    public function logout(Request $request) // ログアウトの処理(post)
     {
-        return view('users.home');
-    }
-
-    public function home() // ホーム画面の処理(post)
-    {
-        // サイドバーの「ログアウト」ボタンを押すとログイン画面に戻る
-        return view('users.');
+        Auth::logout(); // ログアウト
+        return redirect()->route('home_screen'); // 「ログアウト」ボタンを押すと、ログイン画面にリダイレクト
     }
 }
-
-
