@@ -24,11 +24,18 @@ Route::post('/signup', 'UsersController@signup')->name('signup'); // 新規登�
 
 //ログイン画面へ遷移
 Route::get('/login_form', 'UsersController@login_form')->name('login_form');
-Route::post('/login', 'UsersController@login')->name('login'); // ログインの処理
+Route::post('/login', 'UsersController@login')->name('login'); // ログイン認証
+Route::post('/logout', 'UsersController@logout')->name('logout'); // ログアウト
 
 //ホーム画面へ遷移
-Route::get('/home_screen', 'UsersController@home_screen')->name('home_screen');
-Route::post('/home', 'UsersController@login')->name('home'); // ホーム画面の処理
+Route::get('/home_screen', 'ChatController@home_screen')->name('home_screen');
+
+//チャット登録
+Route::post('/chat', 'ChatController@chat')->name('chat');
+Route::get('/chat_delete/{id}', 'ChatController@chat_delete')->name('chat_delete'); //チャット削除
+
+//ログインしないとアクセス出来ないようにする
+Route::middleware('auth:api', 'throttle:60,1')->group(function () {
 
 //在庫一覧画面の表示
 Route::get('/products', 'ProductController@index')->name('products');
@@ -41,9 +48,9 @@ Route::get('/create', 'ProductController@create')->name('create');
 Route::get('/order/{id}', 'ProductController@order')->name('order');
 
 //注文メール送信画面へ遷移
-/* Route::get('/form', [App\Http\Controllers\ProductController::class, 'form'])->name('form'); */
-//注文メール送信画面へ遷移(mailable機能)
-Route::get('/mail', 'ProductController@mail')->name('mail');
+Route::get('/form2', 'ProductController@form')->name('form');
+//注文番号確認画面へ遷移
+Route::get('/ship', 'ProductController@ship')->name('ship');
 
 //持ち出し申請submit
 Route::post('/update', 'ProductController@update')->name('products');
@@ -60,13 +67,18 @@ Route::post('/insert', 'ProductController@insert')->name('order_table');
 //注文表画面表示
 Route::get('/order_table', 'ProductController@order_table')->name('order_table');
 
-Route::post('/delete/{id}', 'ProductController@delete')->name('order_table');
-// 送信メール本文のプレビュー
-Route::get('sample/mailable/preview', function () {
-    return new App\Mail\SampleNotification();
-  });
-//SampleNotificationメソッド
-  Route::get('sample/mailable/send', 'SampleController@SampleNotification');
-  //Mailableを使った
- /*  Route::get('/mail', 'MailController@index'); */
-  Route::post('/send', 'MailController@send');
+//Mailableを使った
+Route::get('/form', 'MailController@form');
+Route::post('/form', 'MailController@send');
+
+
+
+});
+
+/* Route::middleware(['AdminMiddleware'])->group(function(){
+    //アドミン以外見られたくないルート設定
+}); */
+
+/* Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home'); */
