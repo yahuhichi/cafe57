@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOutsTable extends Migration
+class DropColumnLunchTimeColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateOutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('outs', function (Blueprint $table) {
-            $table->increments('id')->index();
-            $table->integer('product_id')->index();
-            $table->integer('out_amount');
-            $table->string('staff');
-            $table->timestamps();
+        Schema::table('works', function (Blueprint $table) {
+            $table->dropColumn('lunch_time');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateOutsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('outs');
+        Schema::table('works', function (Blueprint $table) {
+            //
+        });
     }
 }

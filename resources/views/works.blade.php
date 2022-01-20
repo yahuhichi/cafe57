@@ -82,12 +82,12 @@ if ($dd > $last_day) { break; }
 echo '<tr>' . PHP_EOL;
 for ($j=0; $j < 7; $j++) {
 if ((($i > 0)or($j >= $start))&&($dd <= $last_day)) {
-printf('<td><form name="form1">
-	<select name="color1">
-	<option value="red">✖</option>
-	<option value="yellow">○</option>
-	<option value="blue">11:00-16:00</option>
-	<option value="blue">16:00-21:00</option>
+printf('<td><form name="1">
+	<select name="calender">
+	<option value="1">✖</option>
+	<option value="2">○</option>
+	<option value="3">Lunch</option>
+	<option value="4">Dinner</option>
 </select>%d</td>' . PHP_EOL, $dd, $dd);
 $dd++;
 } else {
@@ -100,11 +100,15 @@ echo '</tr>' . PHP_EOL;
 </table>
 
 </div>
+ <!-- シフト申請ボタン -->
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-6">
+            <button type="submit" class="btn btn-default">
+                <i class="fa fa-plus"></i> 申請する
+            </button>
+        </div>
+    </div>
 
-<div class="button">
-  <button type="submit">申請する</button>
-</div>
-</form>
 
 <style>
 th {

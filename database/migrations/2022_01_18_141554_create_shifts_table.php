@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class CreateShiftsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id')->unique();
-            $table->integer('product_id')->index();
-            $table->string('product_name')->index();
-            $table->integer('new_order');
+        Schema::create('shifts', function (Blueprint $table) {
+            $table->increments('id')->indx();
+            $table->date('date');
             $table->string('staff');
-            $table->integer('status');
-           /*  $table->integer('delFlg'); */
+            $table->string('work_time');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,6 +30,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('shifts');
     }
 }
