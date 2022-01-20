@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; // Authクラスを使用
 use App\User;
 use App\Chat; // Chat.php(Models)にアクセス
 class ChatController extends Controller
@@ -13,33 +14,31 @@ class ChatController extends Controller
      */
     public function home_screen()
     {
-        $chats = Chat::orderBy('created_at', 'desc')->get();
-        return view('users.home', ['chats' => $chats]);
-    }
-
-    public function logout() // ログアウトの処理(post)
-    {
-        return redirect('users.login'); //「ログアウト」ボタンを押すとログイン画面へリダイレクト
+        if (Auth::check()) // = 現在のユーザーが認証されているか調べる
+        {
+            $chats = Chat::orderBy('created_at', 'desc')->get();
+            $user = Auth::user(); // 現在認証しているユーザーを取得
+            return view('users.home', ['chats' => $chats, 'user' => $user]); // ログインに成功している場合はホーム画面に遷移
+        }
+        else
+        {
+            return redirect('login_form'); // ログインに失敗した場合は、ログイン画面に遷移
+        }
     }
 
     /**
-     * user_id、title、messageの受け渡し
+     * 「投稿」ボタンを押した時の処理
      * 
      */
     public function chat(Request $request)
     {
         $chat = new Chat; // $chatの変数に、Chatモデルを定義
-
-        $chat->user_id = 1; // 仮にuser_idを1とする
-        $chat->title = $request->title; // $chatにtitleをセット
-        $chat->message = $request->message; // $chatにmessageをセット
-
+        $user = Auth::user(); // 認証しているユーザーを取得
+        $id = Auth::id(); // 認証しているユーザーのIDを取得
+        $chat->user_id = $id; // user_idをセット
+        $chat->title = $request->title; // titleをセット
+        $chat->message = $request->message; // messageをセット
         $chat->save(); // $chatに格納されている情報を保存。
-
-        // $chats = Chat::orderBy('created_at', 'desc')->get();
-        // return view('chat.home_screen', ['chats' => $chats]);
-
-        return redirect('home_screen'); // ホーム画面にリダイレクト(ChatControllerの14行目のhome_screen関数を呼び出して表示)
+        return redirect('home_screen'); // 入力内容が保存されたら、ホーム画面にリダイレクト
     }
-
 }
