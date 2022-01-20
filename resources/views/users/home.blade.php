@@ -37,7 +37,7 @@
                 <div class="outer-message-form">
                     <p><h3>メッセージ</h3></P>
                     <textarea name="message" placeholder="ここにメッセージを入力してください" autocomplete="off" rows="30" cols="20"></textarea><br> <!-- rows =「高さ」, cols =「幅」-->
-                    <input type="submit" value="投稿">
+                    <input type="submit" value="投稿" style=background:#99CC00;>
                 </div>
             </form>
             <div class="chatarea">
@@ -49,6 +49,7 @@
                         <td>{{ $chat->message }}</td>
                         <td>{{ $chat->created_at }}</td>
                         <td>{{ $chat->updated_at }}</td>
+                        <td><a href="chat_delete/{{ $chat->id }}" class="chat_delete_button">削除</a></td>
                     </tr>
                     @endforeach
                 </table>
