@@ -23,7 +23,7 @@
                         <!-- p(段落)に「display:inline-block」のスタイルを指定することで、ラジオボタンが横並びになる。 -->
                         <p style="display:inline-block"><input type="radio" name="user_type" value="1" class="radio-buttom-1" checked >従業員</p>
                         <p style="display:inline-block"><input type="radio" name="user_type" value="2" class="radio-buttom-1" >管理者</p>
-                        <p><input type="text" name="name" placeholder="名前を入力してください" autocomplete="off" style="width:250px; height:30px;"></P>
+                        <p><input type="text" name="name" placeholder="名前(苗字:4文字以内)を入力してください" autocomplete="off" maxlength='4' style="width:250px; height:30px;"></P>
                         <p><input type="text" name="user_name" placeholder="ユーザー名を入力してください" autocomplete="off" style="width:250px; height:30px; margin-top:10px;"></P>
                         <p><input type="email" name="email" placeholder="メールアドレスを入力してください" autocomplete="off" style="width:250px; height:30px; margin-top:10px;"></p>
                         <p><input type="password" name="password" placeholder="パスワードを入力してください" autocomplete="off" style="width:250px; height:30px; margin-top:10px;"></p>
