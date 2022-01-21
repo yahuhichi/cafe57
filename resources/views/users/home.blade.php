@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}"> <!-- home.cssと連携 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script> <!-- jQueryのライブラリを読み込み -->
+    <script src="{{ asset('/js/home.js') }}"></script> <!-- home.jsと連携 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ホーム画面</title>
@@ -44,12 +46,12 @@
                 <table> <!-- chatテーブルのデータを全て表示させる処理 -->
                     @foreach ($chats as $chat)
                     <tr>
-                        <td>{{ $chat->user->name }}</td> <!-- $chatに、user関数を使い、その中のnameを参照 -->
+                        <td style="width:70px">{{ $chat->user->name }}</td> <!-- $chatに、user関数を使い、その中のnameを参照 -->
                         <td>{{ $chat->title }}</td>
                         <td>{{ $chat->message }}</td>
                         <td>{{ $chat->created_at }}</td>
                         <td>{{ $chat->updated_at }}</td>
-                        <td><a href="chat_delete/{{ $chat->id }}" class="chat_delete_button">削除</a></td>
+                        <td style="width:40px"><a href="chat_delete/{{ $chat->id }}" class="chat_delete_button" button id="delete">削除</a></td>
                     </tr>
                     @endforeach
                 </table>
