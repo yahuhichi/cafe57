@@ -51,7 +51,7 @@
                         <td>{{ $chat->message }}</td>
                         <td>{{ $chat->created_at }}</td>
                         <td>{{ $chat->updated_at }}</td>
-                        <td style="width:40px"><a href="chat_delete/{{ $chat->id }}" class="chat_delete_button" button id="delete">削除</a></td>
+                        <td style="width:40px"><a href="chat_delete/{{ $chat->id }}" class="chat_delete_button">削除</a></td>
                     </tr>
                     @endforeach
                 </table>
