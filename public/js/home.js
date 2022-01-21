@@ -2,7 +2,7 @@
 
 /* ボタンクリック時にページ遷移 */
 $(function(){
-    $('#delete').click(function(){
+    $('.chat_delete_button').click(function(){ // 「.」でクラス指定
         if(!confirm('本当に削除しますか？')){
             return false; // キャンセルの場合は元に戻る
         }else{
