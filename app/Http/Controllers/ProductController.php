@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // DB ファサードを use する
+use Illuminate\Support\Facades\Auth;//ログインステイタスをもらうため
 
-// use App\Models\Product;
-// use App\Models\Order;
-// use App\Models\Out;
+
 use App\Product;
 use App\Order;
 use App\Out;
 use App\Ship;
+use App\User;
+
 use Psy\Command\WhereamiCommand;
 
 class ProductController extends Controller
@@ -38,7 +39,6 @@ class ProductController extends Controller
     public function order(Request $request)
     {
         $products = Product::where('id', $request->id)->get();
-        //dd($products);
         return view('order', [
             'products' => $products,
         ]);
@@ -146,28 +146,7 @@ class ProductController extends Controller
         ]);
     }
 
-    //削除停止
-    /*  public function delete($product_name){ */
-    //削除対象レコードを検索
-    /*   public function delete(Request $request,$id)
-        {
-           $order=Order::find($request->$id);
-           $order->delFlg='Y';
-           $order->save();
- */
 
-    /* $product =Product::find($product_name);
-        //Productから削除
-
-        $product->delete();
-
-        $order = Order::find($product_name);
-
-        $order->delete(); */
-
-    //リダイレクト
-    /*  return redirect('/order_table');
-        } */
 
 
     /**
@@ -192,36 +171,42 @@ class ProductController extends Controller
     public function ship(Request $request)
 
     {
+        //管理者だったら
+        $user=Auth::user();
+        if($user->user_type===2){
 
-        //value1or2をOrderテーブルに入力
-        $list = $request->order;
-        foreach ($list as $value) {
+            //value1or2をOrderテーブルに入力
+            $list = $request->order;
+            foreach ($list as $value) {
 
-            DB::table('orders')
-                ->where('product_id', $value['product_id'])
-                ->update([
-                    'status' => $value['status']
-                ]);
+                DB::table('orders')
+                    ->where('product_id', $value['product_id'])
+                    ->update([
+                        'status' => $value['status']
+                    ]);
+            }
+            // shipsテーブルへ送る注文を指定
+            $data = Order::where('status', '=', '1')
+                ->first();
+
+            //shipsテーブルへのデータ受け渡し
+            $ship = new Ship;
+            $ship->product_name = $data->product_name;
+            $ship->new_order = $data->new_order;
+            $ship->save();
+
+           //status=1を削除する
+            $data ->delete();
+
+            /* dd('test'); */
+            return view('ship', [
+                'ship' => $ship
+            ]);
         }
-        // shipsテーブルへ送る注文を指定
-        $data = Order::where('status', '=', '1')
-            ->first();
 
-        /* dd($order); */
-        //shipsテーブルへのデータ受け渡し
-        $ship = new Ship;
-        /*  $ship->id = 0; */
-        $ship->product_name = $data->product_name;
-        $ship->new_order = $data->new_order;
-        $ship->save();
-
-       //status=1を削除する
-        $data ->delete();
-
-        /* dd('test'); */
-        return view('ship', [
-            'ship' => $ship
-        ]);
+        else{
+            return redirect()->route('home_screen');
+        }
     }
 
     //持ち出し申請→outテーブルへの登録

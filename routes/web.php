@@ -33,8 +33,8 @@ Route::post('/home', 'ChatController@logout')->name('logout'); //ログアウト
 //チャット登録
 Route::post('/chat', 'ChatController@chat')->name('chat');
 
-//ログインしないとアクセス出来ないようにする
-Route::middleware('auth:api', 'throttle:60,1')->group(function () {
+//以下をログインしないとアクセス出来ないようにする
+Route::middleware('auth')->group(function () {
 
 //在庫一覧画面の表示
 Route::get('/products', 'ProductController@index')->name('products');
@@ -46,10 +46,6 @@ Route::get('/create', 'ProductController@create')->name('create');
 //注文申請画面へ遷移
 Route::get('/order/{id}', 'ProductController@order')->name('order');
 
-//注文メール送信画面へ遷移
-Route::get('/form2', 'ProductController@form')->name('form');
-//注文番号確認画面へ遷移
-Route::get('/ship', 'ProductController@ship')->name('ship');
 
 //持ち出し申請submit
 Route::post('/update', 'ProductController@update')->name('products');
@@ -71,13 +67,11 @@ Route::get('/form', 'MailController@form');
 Route::post('/form', 'MailController@send');
 
 
+//注文番号確認画面へ遷移
+Route::get('/ship', 'ProductController@ship')->name('ship');
+//注文メール送信画面へ遷移
+Route::get('/form2', 'ProductController@form')->name('form');
 
 });
 
-/* Route::middleware(['AdminMiddleware'])->group(function(){
-    //アドミン以外見られたくないルート設定
-}); */
 
-/* Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home'); */
