@@ -47,7 +47,8 @@
                 </div>
                 <div class="col-sm-6">
                     <label>数量</label>
-                    <input type="text" name="new_order" id="new_order" class="form-control">
+                    {{$order_number}}
+                    <input type="hidden" name="new_order" value="{{$order_number}}"/>
                 </div>
                 <div class="col-sm-6">
                     <label>従業員名</label>
