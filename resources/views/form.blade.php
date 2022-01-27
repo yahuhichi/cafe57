@@ -18,7 +18,7 @@
 
             <form action="{{ url('form') }}" method="POST">
             @csrf
-                <p>送信先:<input type="text" name="company_name" value="{{old('company_name')}}"></p>
+                <p>送信先:<input type="text" name="company_name" value="{{old('company_name')}}" placeholder="担当業者名を入力してください"></p>
                 @if ($errors->has('company_name'))
                 <p>{{$errors->first('company_name')}}</p>
                 @endif
@@ -31,16 +31,16 @@
                 <p>{{$errors->first('order_id')}}</p>
                 @endif
 
-                <p>希望納期:<input type="text" name="due_date" value="{{old('due_date')}}"></p>
+                <p>希望納期:<input type="text" name="due_date" value="{{old('due_date')}}"placeholder="例:01-01-2022"></p>
                 @if ($errors->has('due_date'))
                 <p>{{$errors->first('due_date')}}</p>
                 @endif
 
-                <p>納品先:<input type="text" name="ship_to"  value="{{old('ship_to')}}"></p>
+                <p>納品先:<input type="text" name="ship_to"  value="{{old('ship_to')}}"placeholder="店舗名を入力してください"></p>
                 @if ($errors->has('ship_to'))
                 <p>{{$errors->first('ship_to')}}</p>
                 @endif
-                <p>担当名:<input type="text" name="attend"  value="{{old('attend')}}"></p>
+                <p>担当名:<input type="text" name="attend"  value="{{old('attend')}}"placeholder="担当者の名前を入力してください"></p>
                 @if ($errors->has('attend'))
                 <p>{{$errors->first('attend')}}</p>
                 @endif
