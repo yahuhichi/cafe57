@@ -25,6 +25,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+
         $products = Product::orderBy('created_at', 'asc')->get();
         return view('products', [
             'products' => $products,
@@ -36,12 +37,21 @@ class ProductController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function order(Request $request)
+    //idを指定する
+    public function order(Request $request,$product_id)
     {
+         //注文数を計算
+        $stock = Product::where('id', $product_id)
+            ->value('stock');
+        $order_line = Product::where('id', $product_id)
+            ->value('order');
+        $order_number= $order_line-$stock;
+
+
+
         $products = Product::where('id', $request->id)->get();
-        return view('order', [
-            'products' => $products,
-        ]);
+       //compact関数で複数の変数を渡す
+        return view('order', compact('products', 'order_number'));
     }
     /**
      * 備品登録画面へ遷移
@@ -75,7 +85,7 @@ class ProductController extends Controller
     {
 
         $this->validate($request, [
-            'product_name' => 'required|max:25',
+            'product_name' => 'required|max:25|unique:products',
             'stock' => 'required|max:25',
             'order' => 'required|max:25',
         ]);
