@@ -53,8 +53,8 @@
                     <td>
                         <div>
 
-                            <p style="display:inline-block"><input type="radio" name="order[{{ $order->product_id }}][status]" value="1" class="radio-buttom-1">送信済み</p>
-                            <p style="display:inline-block"><input type="radio" name="order[{{ $order->product_id }}][status]" value="2" class="radio-buttom-1">保留</p>
+                            <p style="display:inline-block"><input type="radio" name="order[{{ $order->product_id }}][status]" value="1" class="radio-buttom-1" required>送信済み</p>
+                            <p style="display:inline-block"><input type="radio" name="order[{{ $order->product_id }}][status]" value="2" class="radio-buttom-1" required>保留</p>
                             <input type="hidden" name="order[{{ $order->product_id }}][product_id]" value="{{ $order->product_id }}">
                         </div>
                     </td>
