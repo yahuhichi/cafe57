@@ -1,0 +1,16 @@
+/* 在庫一覧画面のCSS */
+body {
+    background-color:#f6f5f4;
+    margin-left: 125px;
+    margin-top: 25px;
+}
+
+.py-4 { /* 在庫一覧表のエリア */
+    height:700px;
+    text-align:center;
+    border: 2px solid;
+    margin-left:5px;
+    position: relative; 
+    display: flex;
+}
+
