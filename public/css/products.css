@@ -4,13 +4,105 @@ body {
     margin-left: 125px;
     margin-top: 25px;
 }
-
+/*サイドメニュー*/
+.side{
+    background-color: lemonchiffon;
+}
+.side a{
+    text-decoration: none;
+    color:saddlebrown;
+}
 .py-4 { /* 在庫一覧表のエリア */
     height:700px;
     text-align:center;
-    border: 2px solid;
+    /* border: 2px solid; */
     margin-left:5px;
-    position: relative; 
+    position: relative;
     display: flex;
+    margin-right: 700px;
 }
+.table-responsive{
+    background-color: darkseagreen;
+    padding-left: 63;
+    padding-right: 100;
+    padding-top: 30;
+    width: 800px;
+}
+.table-responsive p{
+    background-color:darkseagreen;
+    color:darkgreen;
+    height: 30px;
+    margin-top:0px;
+    margin-bottom: 0px;
+    width: 100%;
+    font-weight: bold;
+}
+
+.table-hover{
+    width: 100%;
+}
+tr{
+
+}
+th,td {
+    border: solid 1px;              /* 枠線指定 */
+}
+
+table {
+    border-collapse:  collapse;     /* セルの線を重ねる */
+}
+.alert{
+    text-align: center;
+}
+.alert a{
+    text-decoration: none;
+    border: solid 0.5px orange;
+    background-color: yellow;
+    border-radius: 10px;
+}
+.button{
+    margin-top:10px;
+}
+.button a{
+    color: #1422d1;
+    background-color: #2feb00;
+    text-decoration: none;
+    border: solid green;
+}
+.button input{
+    color: #1422d1;
+    background-color: #2feb00;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+.button button{
+    color: #1422d1;
+    background-color: #2feb00;
+    text-decoration: none;
+}
+.radio{
+    display:inline-block;
+}
+.radio p{
+    width: 100px;
+}
+/* 申請フォーム */
+.panel-body{
+ background-color:lightgreen;
+ padding: 0 110;
+}
+.form-group{
+    margin: 50;
+}
+.control-label{
+    background-color:darkseagreen;
+    color:darkgreen;
+    height: 30px;
+   /*  border: solid green; */
+    font-weight: bold;
+}
+.col-sm-6{
+    margin-top: 30px;
+}
+/*注文メールフォーム*/
 
