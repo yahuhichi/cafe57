@@ -21,16 +21,16 @@
         </form>
     </div>
 </div>
-<div class="table-responsive">
+<div class="table-responsive" >
     <p>在庫一覧表</p>
-    <table class="table table-hover">
+    <table class="table-hover">
         <thead>
             <tr>
-                <th>型番</th>
-                <th>品目</th>
-                <th>在庫数</th>
-                <th>発注ライン</th>
-                <th>アラート</th>
+                <th style="width:20%">型番</th>
+                <th style="width:20%">品目</th>
+                <th style="width:20%">在庫数</th>
+                <th style="width:20%">発注ライン</th>
+                <th style="width:20%">アラート</th>
             </tr>
         </thead>
         <tbody id="tbl">
@@ -41,7 +41,7 @@
                 <td>{{ $product->stock }}</td>
                 <td>{{ $product->order }}</td>
                 <!-- <アラートボタン表示> -->
-                <td> @if( $product->stock < $product->order )
+                <td class="alert"> @if( $product->stock < $product->order )
                 <a href="/order/{{ $product->id }}">{{$product->id}}</a>
                 {{csrf_field()}}
                 <!-- <input type="hidden" name="id" value="{{ $product->id }}" />
@@ -52,8 +52,10 @@
         @endforeach
         </tbody>
     </table>
-    <a href="{{ route('create') }}">登録</a>
-    <a href="{{ route('store') }}">持ち出し</a>
+    <div class="button">
+        <a href="{{ route('create') }}">登録</a>
+        <a href="{{ route('store') }}">持ち出し</a>
+    </div>
 </div>
 @endsection
 

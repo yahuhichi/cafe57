@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/products.css') }}"> <!-- products.cssと連携 -->
 @section('content')
 
 <!-- 送信メールフォームパネル… -->

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/products.css') }}"> <!-- products.cssと連携 -->
 @section('content')
 
 <div class="side"> <!-- サイドバー -->
@@ -30,7 +30,7 @@
 
         <!-- 備品データ名 -->
         <div class="form-group">
-            <label for="product-name" class="col-sm-3 control-label">持ち出し申請</label>
+            <label for="product-name" class="control-label">持ち出し申請</label>
 
             <div class="col-sm-6">
               <label>型番</label>
@@ -54,8 +54,8 @@
 
         <!-- 備品登録ボタン -->
         <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-6">
-                <button type="submit" class="btn btn-default">
+            <div class="button">
+                <button type="submit" >
                     <i class="fa fa-plus"></i> 申請する
                 </button>
             </div>

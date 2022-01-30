@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<link rel="stylesheet" href="{{ asset('css/products.css') }}"> <!-- products.cssと連携 -->
 
 @section('content')
 
@@ -58,7 +59,7 @@
         </div>
 
         <!-- 注文登録ボタン -->
-        <div class="form-group">
+        <div class="button">
             <div class="col-sm-offset-3 col-sm-6">
                 <button type="submit" class="btn btn-default">
                     <i class="fa fa-plus"></i> 申請する

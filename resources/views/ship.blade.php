@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/products.css') }}"> <!-- products.cssと連携 -->
 
 @section('content')
 
@@ -47,7 +47,8 @@
 
         </tbody>
     </table>
-    <a href="{{ route('form') }}">メール作成</a>
-
+    <div class="button">
+        <a href="{{ route('form') }}">メール作成</a>
+    </div>
 </div>
 @endsection
