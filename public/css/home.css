@@ -10,7 +10,13 @@ body {
     height:700px;
     text-align:center;
     border: 2px solid;
+    background-color: lemonchiffon;
 } 
+
+.side a {
+    text-decoration: none; /* リンクの下線を削除 */
+    color: saddlebrown;
+}
 
 .sidebar {
     list-style: none;

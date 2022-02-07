@@ -41,9 +41,7 @@ body {
 .table-hover{
     width: 100%;
 }
-tr{
 
-}
 th,td {
     border: solid 1px;              /* 枠線指定 */
 }
@@ -88,8 +86,8 @@ table {
 }
 /* 申請フォーム */
 .panel-body{
- background-color:lightgreen;
- padding: 0 110;
+    background-color:lightgreen;
+    padding: 0 110;
 }
 .form-group{
     margin: 50;
