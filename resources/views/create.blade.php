@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/products.css') }}"> <!-- products.cssと連携 -->
 @section('content')
 
 <div class="side"> <!-- サイドバー -->
@@ -7,9 +7,9 @@
             <nav class="sidebar">
                 <p><a href="{{ url('products') }}"><h3>在庫一覧画面</h3></a></p>
                 <p><a href="{{ url('order_table') }}"><h3>注文表画面</h3></a></p>
-                <p><a href="{{ url('') }}"><h3>シフト申請画面</h3></a></p>
+                <!-- <p><a href="{{ url('') }}"><h3>シフト申請画面</h3></a></p>
                 <p><a href="{{ url('') }}">・シフト管理画面</a></p>
-                <p><a href="{{ url('') }}">・勤怠一覧画面</a></p>
+                <p><a href="{{ url('') }}">・勤怠一覧画面</a></p> -->
                 <p><a href="{{ route('home_screen') }}">ホーム画面に戻る</a></p>
             </nav>
             <div class="logout_buttom">
@@ -49,9 +49,9 @@
 
         <!-- 備品登録ボタン -->
         <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-6">
-                <button type="submit" class="btn btn-default">
-                    <i class="fa fa-plus"></i> 登録する
+            <div class="button">
+                <button type="submit">
+                     登録する
                 </button>
             </div>
         </div>

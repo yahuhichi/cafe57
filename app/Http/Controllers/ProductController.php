@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // DB ファサードを use する
-use Illuminate\Support\Facades\Auth;//ログインステイタスをもらうため
+use Illuminate\Support\Facades\Auth; //ログインステイタスをもらうため
 
 
 use App\Product;
@@ -25,6 +25,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+
         $products = Product::orderBy('created_at', 'asc')->get();
         return view('products', [
             'products' => $products,
@@ -36,12 +37,21 @@ class ProductController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function order(Request $request)
+    //idを指定する
+    public function order(Request $request, $product_id)
     {
+        //注文数を計算
+        $stock = Product::where('id', $product_id)
+            ->value('stock');
+        $order_line = Product::where('id', $product_id)
+            ->value('order');
+        $order_number = $order_line - $stock;
+
+
+
         $products = Product::where('id', $request->id)->get();
-        return view('order', [
-            'products' => $products,
-        ]);
+        //compact関数で複数の変数を渡す
+        return view('order', compact('products', 'order_number'));
     }
     /**
      * 備品登録画面へ遷移
@@ -75,7 +85,7 @@ class ProductController extends Controller
     {
 
         $this->validate($request, [
-            'product_name' => 'required|max:25',
+            'product_name' => 'required|max:25|unique:products',
             'stock' => 'required|max:25',
             'order' => 'required|max:25',
         ]);
@@ -172,8 +182,8 @@ class ProductController extends Controller
 
     {
         //管理者だったら
-        $user=Auth::user();
-        if($user->user_type===2){
+        $user = Auth::user();
+        if ($user->user_type === 2) {
 
             //value1or2をOrderテーブルに入力
             $list = $request->order;
@@ -195,16 +205,14 @@ class ProductController extends Controller
             $ship->new_order = $data->new_order;
             $ship->save();
 
-           //status=1を削除する
-            $data ->delete();
+            //status=1を削除する
+            $data->delete();
 
             /* dd('test'); */
             return view('ship', [
                 'ship' => $ship
             ]);
-        }
-
-        else{
+        } else {
             return redirect()->route('home_screen');
         }
     }
@@ -212,33 +220,54 @@ class ProductController extends Controller
     //持ち出し申請→outテーブルへの登録
     public function subtract(Request $request)
     {
+        //productsテーブルに型番があるか確認
+       /*  error_log("subtrac:productid " . $request->product_id . ", now startd."); */
+        $product_record = Product::where('id', '=', $request->product_id)->first();
 
-        $this->validate($request, [
-            'product_id' => 'required|max:25',
-            'out_amount' => 'required|max:25',
-        ]);
-
-        $out = new Out;
-        $out->product_id = $request->product_id;
-        $out->out_amount = $request->out_amount;
-        $out->staff = $request->staff;
-        $out->save();
-
-
-        //在庫表への反映→在庫表へ遷移
-        $data = Product::where('id', $request->product_id)
-            ->value('stock');
-
-
-        $subtract = $data - $request->out_amount;
-
-        DB::table('products')
-            ->where('id', $request->product_id)
-            ->update([
-                'stock' => $subtract
+        if ( $product_record ) {
+            /* error_log("subtrac:productid " . $request->product_id . " was exist."); */
+            $this->validate($request, [
+                'product_id' => 'required|max:25',
+                'out_amount' => 'required|max:25',
+                'staff' => 'required|max:25',
             ]);
+           /*  error_log("subtrac:validation is okay."); */
 
+             $stock=Product::where('id', '=', $request->product_id)->value('stock');
 
-        return redirect('products');
+             if($stock>$request->out_amount){
+
+                 $out = new Out;
+                 $out->product_id = $request->product_id;
+                 $out->out_amount = $request->out_amount;
+                 $out->staff = $request->staff;
+                 $out->save();
+                 /* error_log("subtrac:Out table was updated."); */
+
+                 //在庫表への反映→在庫表へ遷移
+                 $data = Product::where('id', $request->product_id)
+                     ->value('stock');
+
+                 $subtract = $data - $request->out_amount;
+
+                 DB::table('products')
+                     ->where('id', $request->product_id)
+                     ->update([
+                         'stock' => $subtract
+                     ]);
+
+                 /* error_log("subtrac:products table was updated."); */
+
+             return redirect('products');
+             }
+             else {
+                 return trans('validation.numeric');
+
+        }
+    }
+        else {
+
+            return trans('validation.accepted');
+        }
     }
 }

@@ -24,18 +24,18 @@ class MailController extends Controller
         $rules = [
             'company_name' => 'required|',
             'order_id' => 'required|',
-            'due_date' => 'required|',
+            'due_date' => 'required|date',
             'ship_to' => 'required|',
             'attend' => 'required|',
         ];
 
 
-        
+
 
         $validator = Validator::make($request->all(), $rules);
 
         if($validator->fails()) {
-            return redirect('/mail')
+            return redirect('/form')
             ->withErrors($validator)
             ->withInput();
         }

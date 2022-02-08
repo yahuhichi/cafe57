@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('css/products.css') }}"> <!-- products.cssと連携 -->
 
 @section('script')
 
@@ -12,9 +12,9 @@
             <nav class="sidebar">
                 <p><a href="{{ url('products') }}"><h3>在庫一覧画面</h3></a></p>
                 <p><a href="{{ url('order_table') }}"><h3>注文表画面</h3></a></p>
-                <p><a href="{{ url('') }}"><h3>シフト申請画面</h3></a></p>
+                <!-- <p><a href="{{ url('') }}"><h3>シフト申請画面</h3></a></p>
                 <p><a href="{{ url('') }}">・シフト管理画面</a></p>
-                <p><a href="{{ url('') }}">・勤怠一覧画面</a></p>
+                <p><a href="{{ url('') }}">・勤怠一覧画面</a></p> -->
                 <p><a href="{{ route('home_screen') }}">ホーム画面に戻る</a></p>
             </nav>
             <div class="logout_buttom">
@@ -30,7 +30,7 @@
     <p>注文一覧表</p>
     <!--  //formからmailにそして、shipに名前変更// -->
     <form action="{{ route('ship') }}" method="GET">
-        <table class="table table-hover">
+        <table class="table-hover">
             <thead>
                 <tr>
                     <th>型番</th>
@@ -46,15 +46,15 @@
                 @foreach ($orders as $order)
                 <tr>
 
-                    <td>{{ $order->product_id }}</td>
-                    <td>{{ $order->product_name }}</td>
-                    <td>{{ $order->new_order }}</td>
-                    <td>{{ $order->staff }}</td>
+                    <td style="width:20% ">{{ $order->product_id }}</td>
+                    <td style="width:20%">{{ $order->product_name }}</td>
+                    <td style="width:20%">{{ $order->new_order }}</td>
+                    <td style="width:20%">{{ $order->staff }}</td>
                     <td>
-                        <div>
+                        <div class="radio" style="width: 20%">
 
-                            <p style="display:inline-block"><input type="radio" name="order[{{ $order->product_id }}][status]" value="1" class="radio-buttom-1">送信済み</p>
-                            <p style="display:inline-block"><input type="radio" name="order[{{ $order->product_id }}][status]" value="2" class="radio-buttom-1">保留</p>
+                            <p ><input type="radio" name="order[{{ $order->product_id }}][status]" value="1" class="radio-buttom-1" required>送信済み</p>
+                            <p ><input type="radio" name="order[{{ $order->product_id }}][status]" value="2" class="radio-buttom-1" required>保留</p>
                             <input type="hidden" name="order[{{ $order->product_id }}][product_id]" value="{{ $order->product_id }}">
                         </div>
                     </td>
@@ -63,7 +63,9 @@
                 </tr>
                 @endforeach
                 <!-- //formからmailにそしてshipに名前変更// -->
-                <input type="submit" href="{{ route('ship') }}" value="注文番号確認" class="btn btn-danger btn-sm btn-dell">
+                <div class="button">
+                <input type="submit" href="{{ route('ship') }}" value="注文番号確認" >
+                </div>
             </tbody>
             @yield('script')
         </table>
