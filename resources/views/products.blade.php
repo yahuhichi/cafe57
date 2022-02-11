@@ -42,7 +42,7 @@
                 <td>{{ $product->order }}</td>
                 <!-- <アラートボタン表示> -->
                 <td class="alert"> @if( $product->stock < $product->order )
-                <a href="/order/{{ $product->id }}">{{$product->id}}</a>
+                <a href="{{ route('order', $product->id) }}">{{$product->id}}</a>
                 {{csrf_field()}}
                 <!-- <input type="hidden" name="id" value="{{ $product->id }}" />
                 <input type="hidden" name="product_name" value="{{ $product->product_name }}" /> -->
