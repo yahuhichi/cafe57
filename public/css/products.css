@@ -35,14 +35,14 @@ a#navbarDropdown{
     margin-right: 700px;
 }
 .table-responsive{
-    background-color: darkseagreen;
+    background-color: #CCFF99;
     padding-left: 63;
     padding-right: 100;
     padding-top: 30;
     width: 800px;
 }
 .table-responsive p{
-    background-color:darkseagreen;
+    background-color:#CCFF99;
     color:darkgreen;
     height: 30px;
     margin-top:0px;
@@ -57,6 +57,7 @@ a#navbarDropdown{
 
 th,td {
     border: solid 1px;              /* 枠線指定 */
+    font-weight: 800;              /*太字*/
 }
 
 table {
@@ -70,6 +71,7 @@ table {
     border: solid 0.5px orange;
     background-color: yellow;
     border-radius: 10px;
+    color:yellow;
 }
 .button{
     margin-top:10px;
@@ -80,18 +82,22 @@ table {
     text-decoration: none;
     margin-top:10px;
     padding: 5px 10px;
-
+    font-weight:800;
 }
 .button input{
     color: #1422d1;
     background-color: #2feb00;
     text-decoration: none;
     margin-bottom: 10px;
+    font-size: larger;
+    font-weight:800;
 }
 .button button{
     color: #1422d1;
     background-color: #2feb00;
     text-decoration: none;
+    font-size: larger;
+    font-weight:800;
 }
 .radio{
     display:inline-block;
@@ -107,15 +113,21 @@ table {
 .form-group{
     margin: 50;
 }
+
 .control-label{
-    background-color:darkseagreen;
+   /*  background-color:#CCFF99; */
     color:darkgreen;
     height: 30px;
    /*  border: solid green; */
     font-weight: bold;
+    font-size: larger;
 }
 .col-sm-6{
     margin-top: 30px;
+}
+.col-sm-6 label{
+    font-size: larger;
+    font-weight: 800;
 }
 /*注文メールフォーム*/
 
