@@ -49,7 +49,7 @@
                 <p>{{$errors->first('order_id')}}</p>
                 @endif
 
-                <p>希望納期:<input type="text" name="due_date" value="{{old('due_date')}}"placeholder="例:01-01-2022"></p>
+                <p>希望納期:<input type="date" name="due_date" value="{{old('due_date')}}"value="2022-02-01"></p>
                 @if ($errors->has('due_date'))
                 <p>{{$errors->first('due_date')}}</p>
                 @endif
