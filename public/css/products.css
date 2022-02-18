@@ -18,6 +18,10 @@ a#navbarDropdown{
 /*サイドメニュー*/
 .side{
     background-color: lemonchiffon;
+    width: 500px;
+    height:700px;
+    text-align:center;
+    border: 2px solid;
 }
 .side a{
     text-decoration: none;
@@ -30,7 +34,7 @@ a#navbarDropdown{
     margin-left:5px;
     position: relative;
     display: flex;
-    margin-right: 700px;
+   /*  margin-right: 700px; */
 }
 .table-responsive{
     background-color: #CCFF99;
