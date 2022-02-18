@@ -71,6 +71,13 @@ table {
     margin-top: -2px;
 }
 
+table.st-tbl1 th { /* thを固定 */
+    color: white;
+    background: black;
+    position: sticky;
+	top: 0;
+}
+
 .chat_delete_button { /* チャット削除ボタンのCSS */
     display       : inline-block;
     font-size     : 8pt; /* 文字サイズ */

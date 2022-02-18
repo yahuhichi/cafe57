@@ -43,7 +43,7 @@
                 </div>
             </form>
             <div class="chatarea">
-                <table> <!-- chatテーブルのデータを全て表示させる処理 -->
+                <table class="st-tbl1">
                     <thead>
                         <tr>
                             <th style="width:10%">名前</th>
@@ -53,7 +53,7 @@
                             <th style="width:10%"></th>
                         </tr>
                     </thead>
-                    @foreach ($chats as $chat)
+                    @foreach ($chats as $chat) <!-- chatテーブルのデータを全て表示させる処理 -->
                     <tbody>
                         <tr>
                             <td style="width:10%">{{ $chat->user->name }}</td> <!-- $chatに、user関数を使い、その中のnameを参照 -->
