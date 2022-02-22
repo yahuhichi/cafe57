@@ -43,16 +43,27 @@
                 </div>
             </form>
             <div class="chatarea">
-                <table> <!-- chatテーブルのデータを全て表示させる処理 -->
-                    @foreach ($chats as $chat)
-                    <tr>
-                        <td style="width:70px">{{ $chat->user->name }}</td> <!-- $chatに、user関数を使い、その中のnameを参照 -->
-                        <td>{{ $chat->title }}</td>
-                        <td>{{ $chat->message }}</td>
-                        <td>{{ $chat->created_at }}</td>
-                        <td>{{ $chat->updated_at }}</td>
-                        <td style="width:40px"><a href="chat_delete/{{ $chat->id }}" class="chat_delete_button">削除</a></td>
-                    </tr>
+                <table class="st-tbl1">
+                    <thead>
+                        <tr>
+                            <th style="width:10%">名前</th>
+                            <th style="width:20%">件名</th>
+                            <th style="width:40%">メッセージ</th>
+                            <th style="width:20%">投稿日時</th>
+                            <th style="width:10%"></th>
+                        </tr>
+                    </thead>
+                    @foreach ($chats as $chat) <!-- chatテーブルのデータを全て表示させる処理 -->
+                    <tbody>
+                        <tr>
+                            <td style="width:10%">{{ $chat->user->name }}</td> <!-- $chatに、user関数を使い、その中のnameを参照 -->
+                            <td style="width:20%">{{ $chat->title }}</td>
+                            <td style="width:40%">{{ $chat->message }}</td>
+                            <td style="width:20%">{{ $chat->created_at }}</td>
+                            <!-- <td style="width:20%">{{ $chat->updated_at }}</td> -->
+                            <td style="width:10%"><a href="chat_delete/{{ $chat->id }}" class="chat_delete_button">削除</a></td>
+                        </tr>
+                    </tbody>
                     @endforeach
                 </table>
             </div>
