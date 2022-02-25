@@ -35,6 +35,7 @@ a#navbarDropdown{
     position: relative;
     display: flex;
    /*  margin-right: 700px; */
+    justify-content: center; /* 左右方向を中央寄せ */
 }
 .table-responsive{
     background-color: #CCFF99;

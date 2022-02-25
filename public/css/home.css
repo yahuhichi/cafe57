@@ -35,6 +35,7 @@ section {
     display:flex;
     padding-top: 50px;
     padding-right: 50px;
+    justify-content: center; /* 左右方向を中央寄せ */
 }
 
 .outer-title-form {
