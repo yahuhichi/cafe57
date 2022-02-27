@@ -45,7 +45,7 @@ Route::post('/products_process', 'UsersController@home')->name('products_process
 Route::get('/create', 'ProductController@create')->name('create');
 
 //注文申請画面へ遷移
-Route::get('/order/{id}', 'ProductController@order')->name('order');
+Route::get('cafe57/public/order/{id}', 'ProductController@order')->name('order');
 
 
 //持ち出し申請submit
